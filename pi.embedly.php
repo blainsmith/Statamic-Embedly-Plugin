@@ -16,6 +16,12 @@ class Plugin_embedly extends Plugin {
   public function index() {
     $url = $this->fetch_param('url', '');
     
-    return '';
+    try {
+	    $data = json_decode(file_get_contents($this->endpoint_url . $url));
+	    
+	    return '';
+    } catch(Exception $e) {
+		  return '';
+	  }
   }
 }
