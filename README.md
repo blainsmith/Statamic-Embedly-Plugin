@@ -9,3 +9,7 @@ Statamic Embedly Plugin
 ## Usage
 
 Calling the plugin from the theme or within contnet is done with `{{ embedly url="VIDEO_TWEET_PHOTO_URL" }}`.
+
+## To Do
+
+- Return raw data from Embed.ly API
