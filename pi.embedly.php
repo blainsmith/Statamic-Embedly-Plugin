@@ -19,7 +19,7 @@ class Plugin_embedly extends Plugin {
     try {
 	    $data = json_decode(file_get_contents($this->endpoint_url . $url));
 	    
-	    return '';
+	    return $data->html;
     } catch(Exception $e) {
 		  return '';
 	  }
