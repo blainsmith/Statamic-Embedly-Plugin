@@ -10,6 +10,10 @@ Statamic Embedly Plugin
 
 Calling the plugin from the theme or within contnet is done with `{{ embedly url="VIDEO_TWEET_PHOTO_URL" }}`.
 
+View [Embed.ly's providers](http://embed.ly/providers) to see which services are supported without an API key
+
 ## To Do
 
 - Return raw data from Embed.ly API
+- Enable calls with an Embed.ly API key
+- Exapand arguments to use ones listed on [http://embed.ly/docs/arguments](http://embed.ly/docs/arguments)
