@@ -8,7 +8,7 @@ Statamic Embedly Plugin
 
 ## Usage
 
-Calling the plugin from the theme or within contet is done with `{{ embedly url="VIDEO_TWEET_PHOTO_URL" }}`.
+Calling the plugin from the theme or within content is done with `{{ embedly url="VIDEO_TWEET_PHOTO_URL" }}`.
 
 View [Embed.ly's providers](http://embed.ly/providers) to see which services are supported without an API key
 
