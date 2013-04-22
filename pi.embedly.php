@@ -7,21 +7,22 @@ class Plugin_embedly extends Plugin {
     'author'     => 'Blain Smith',
     'author_url' => 'http://blainsmith.com'
   );
-  
-  function __construct() {
-    parent::__construct();
-    $this->endpoint_url  = 'http://api.embed.ly/1/oembed?format=json&url=';
-  }
 
   public function index() {
-    $url = $this->fetch_param('url', '');
-    
+    $url = $this->fetchParam('url', '');
+    $key = $this->fetchParam('key', Config::get('embedly_api_key', ''));
+    $endpoint_url  = "http://api.embed.ly/1/oembed?format=json&key={$key}&url={$url}";
+
     try {
-	    $data = json_decode(file_get_contents($this->endpoint_url . $url));
-	    
-	    return $data->html;
+      $data = json_decode(file_get_contents($endpoint_url));
+
+      if ($this->content != "") {
+        return Parse::template($this->content, (array)$data); // Tag pair
+      } else {
+        return $data->html; // Single tag
+      }
     } catch(Exception $e) {
-		  return '';
-	  }
+      return null;
+    }
   }
 }
