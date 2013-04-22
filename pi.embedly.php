@@ -9,15 +9,21 @@ class Plugin_embedly extends Plugin {
   );
 
   public function index() {
-    $url = $this->fetchParam('url', '');
-    $key = $this->fetchParam('key', Config::get('embedly_api_key', ''));
-    $endpoint_url  = "http://api.embed.ly/1/oembed?format=json&key={$key}&url={$url}";
+    $url       = $this->fetchParam('url', '');
+    $key       = $this->fetchParam('key', Config::get('embedly_api_key', ''));
+    $max_width = $this->fetchParam('max_width', false, 'is_numeric');
+
+    $endpoint_url  = "http://api.embed.ly/1/oembed?format=json&key={$key}&url={$url}&maxwidth={$max_width}";
 
     try {
-      $data = json_decode(file_get_contents($endpoint_url));
+      $data = (array) json_decode(file_get_contents($endpoint_url));
+
+      // Move "{{ html }}" to {{ embed }} for clarity's sake
+      $data['embed'] = $data['html'];
+      unset($data['html']);
 
       if ($this->content != "") {
-        return Parse::template($this->content, (array)$data); // Tag pair
+        return Parse::template($this->content, $data); // Tag pair
       } else {
         return $data->html; // Single tag
       }
