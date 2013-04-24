@@ -35,6 +35,7 @@ Using this plugin as a tag pair gives you access to all data returned by the Emb
 <p>{{ description }}</p>
 <div class="player">{{ html }}</div>
 {{ /embedly }}
+```
 
 ### Supported Services
 View [Embed.ly's providers](http://embed.ly/providers) to see which services are supported.
