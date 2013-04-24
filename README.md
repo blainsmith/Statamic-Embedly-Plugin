@@ -38,4 +38,3 @@ Using this plugin as a tag pair gives you access to all data returned by the Emb
 
 ### Supported Services
 View [Embed.ly's providers](http://embed.ly/providers) to see which services are supported.
->>>>>>> 07f1f9862a9647c4140b745883f300a67f9d22b2
