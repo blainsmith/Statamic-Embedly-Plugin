@@ -16,16 +16,17 @@ class Plugin_embedly extends Plugin {
     $endpoint_url  = "http://api.embed.ly/1/oembed?format=json&key={$key}&url={$url}&maxwidth={$max_width}";
 
     try {
-      $data = (array) json_decode(file_get_contents($endpoint_url));
+      $response = file_get_contents($endpoint_url);
+      $data = (array) json_decode($response);
 
-      // Move "{{ html }}" to {{ embed }} for clarity's sake
+      // Alias "{{ html }}" to {{ embed }} for clarity's sake
       $data['embed'] = $data['html'];
-      unset($data['html']);
+      $data['debug'] = $response;
 
       if ($this->content != "") {
         return Parse::template($this->content, $data); // Tag pair
       } else {
-        return $data->html; // Single tag
+        return $data['html']; // Single tag
       }
     } catch(Exception $e) {
       return null;
